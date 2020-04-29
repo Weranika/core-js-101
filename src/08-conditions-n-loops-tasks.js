@@ -27,10 +27,22 @@
  *  21 => 'Fizz'
  *
  */
-function getFizzBuzz(/* num */) {
-  throw new Error('Not implemented');
+function getFizzBuzz(num) {
+  const arr = [];
+  for (let i = 0; i < num; i += 1) {
+    const m = i + 1;
+    if (m % 3 === 0 && m % 5 === 0) {
+      arr[i] = 'FizzBuzz';
+    } else if (m % 5 === 0) {
+      arr[i] = 'Buzz';
+    } else if (m % 3 === 0) {
+      arr[i] = 'Fizz';
+    } else {
+      arr[i] = m;
+    }
+  }
+  return arr;
 }
-
 
 /**
  * Returns the factorial of the specified integer n.
@@ -43,8 +55,8 @@ function getFizzBuzz(/* num */) {
  *   5  => 120
  *   10 => 3628800
  */
-function getFactorial(/* n */) {
-  throw new Error('Not implemented');
+function getFactorial(n) {
+  return n ? n * getFactorial(n - 1) : 1;
 }
 
 
