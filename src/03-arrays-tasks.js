@@ -243,11 +243,16 @@ function toArrayOfSquares(arr) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
 function getMovingSum(arr) {
-  const newArray = [];
-  arr.reduce((prev, curr, i) => {
-    newArray[i] = prev + curr;
-    return newArray;
-  });
+  const result = [];
+  for (let i = 0; i < arr.length; i += 1) {
+    if (i === 0) {
+      result.push(arr[i]);
+    } else {
+      const sum = arr[i] + result[i - 1];
+      result.push(sum);
+    }
+  }
+  return result;
 }
 
 /**
@@ -261,8 +266,14 @@ function getMovingSum(arr) {
  * [ 'a', 'b', 'c' , null ]  => [ "b", null ]
  * [ "a" ] => []
  */
-function getSecondItems(/* arr */) {
-  throw new Error('Not implemented');
+function getSecondItems(arr) {
+  const arr2 = [];
+  for (let i = 1; i < arr.length; i += 1) {
+    if (i % 2 !== 0) {
+      arr2.push(arr[i]);
+    }
+  }
+  return arr2;
 }
 
 
@@ -316,8 +327,14 @@ function get3TopItems(arr) {
  *   [ null, 1, 'elephant' ] => 1
  *   [ 1, '2' ] => 1
  */
-function getPositivesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getPositivesCount(arr) {
+  const arr2 = [];
+  for (let i = 0; i < arr.length; i += 1) {
+    if (arr[i] > 0 && Number.isInteger(arr[i])) {
+      arr2.push(arr[i]);
+    }
+  }
+  return arr2.length;
 }
 
 /**
