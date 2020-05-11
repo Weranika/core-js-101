@@ -28,20 +28,13 @@
  *
  */
 function getFizzBuzz(num) {
-  const arr = [];
-  for (let i = 0; i < num; i += 1) {
-    const m = i + 1;
-    if (m % 3 === 0 && m % 5 === 0) {
-      arr[i] = 'FizzBuzz';
-    } else if (m % 5 === 0) {
-      arr[i] = 'Buzz';
-    } else if (m % 3 === 0) {
-      arr[i] = 'Fizz';
-    } else {
-      arr[i] = m;
-    }
-  }
-  return arr;
+  if (num % 3 === 0 && num % 5 === 0) {
+    return 'FizzBuzz';
+  } if (num % 5 === 0) {
+    return 'Buzz';
+  } if (num % 3 === 0) {
+    return 'Fizz';
+  } return num;
 }
 
 /**
@@ -72,8 +65,12 @@ function getFactorial(n) {
  *   5,10  =>  45 ( = 5+6+7+8+9+10 )
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
-function getSumBetweenNumbers(/* n1, n2 */) {
-  throw new Error('Not implemented');
+function getSumBetweenNumbers(n1, n2) {
+  let sum = 0;
+  for (let i = n1; i <= n2; i += 1) {
+    sum += i;
+  }
+  return sum;
 }
 
 
@@ -92,8 +89,8 @@ function getSumBetweenNumbers(/* n1, n2 */) {
  *   10,1,1   =>  false
  *   10,10,10 =>  true
  */
-function isTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isTriangle(a, b, c) {
+  return a + b > c && a + c > b && b + c > a;
 }
 
 
@@ -237,8 +234,8 @@ function reverseString(/* str */) {
  *   87354 => 45378
  *   34143 => 34143
  */
-function reverseInteger(/* num */) {
-  throw new Error('Not implemented');
+function reverseInteger(num) {
+  return Number(num.toString().split('').reverse().join(''));
 }
 
 
@@ -262,8 +259,18 @@ function reverseInteger(/* num */) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
+function isCreditCardNumber(ccn) {
+  const ccn2 = ccn.toString();
+  let sum = 0;
+  const len = ccn2.length - 1;
+  for (let i = len; i >= 0; i -= 1) {
+    const digit = Number(ccn2[i]);
+    if ((len - i) + 1) {
+      const add = digit * 2;
+      const add2 = add % 10;
+      sum += add < 10 ? add : add2 + 1;
+    } sum += digit;
+  } return sum % 10 === 0;
 }
 
 /**
