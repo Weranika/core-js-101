@@ -35,8 +35,9 @@ function findElement(arr, value) {
  *    2 => [ 1, 3 ]
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds(/* len */) {
-  throw new Error('Not implemented');
+function generateOdds(len) {
+  const arr = new Array(len * 2);
+  return arr.fill().map((val, ind) => ind).filter((ind) => ind % 2 !== 0);
 }
 
 
@@ -243,16 +244,11 @@ function toArrayOfSquares(arr) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
 function getMovingSum(arr) {
-  const result = [];
-  for (let i = 0; i < arr.length; i += 1) {
-    if (i === 0) {
-      result.push(arr[i]);
-    } else {
-      const sum = arr[i] + result[i - 1];
-      result.push(sum);
-    }
-  }
-  return result;
+  let result = 0;
+  return arr.map((val) => {
+    result += val;
+    return result;
+  });
 }
 
 /**
@@ -267,13 +263,7 @@ function getMovingSum(arr) {
  * [ "a" ] => []
  */
 function getSecondItems(arr) {
-  const arr2 = [];
-  for (let i = 1; i < arr.length; i += 1) {
-    if (i % 2 !== 0) {
-      arr2.push(arr[i]);
-    }
-  }
-  return arr2;
+  return arr.filter((val, ind) => (ind + 1) % 2 === 0);
 }
 
 
@@ -386,16 +376,15 @@ function getItemsSum(arr) {
  *  [ null, undefined, NaN, false, 0, '' ]  => 6
  */
 function getFalsyValuesCount(arr) {
+  let b = 0;
   if (arr.length === 0) {
     return 0;
   } for (let i = 0; i < arr.length; i += 1) {
-    let b = 0;
     if (!arr[i]) {
       b += 1;
-      return b;
     }
   }
-  return 0;
+  return b;
 }
 
 /**
@@ -412,8 +401,14 @@ function getFalsyValuesCount(arr) {
  *    [ null, undefined, null ], null => 2
  *    [ true, 0, 1, 'true' ], true => 1
  */
-function findAllOccurences(/* arr, item */) {
-  throw new Error('Not implemented');
+function findAllOccurences(arr, item) {
+  const arr2 = [];
+  for (let i = 0; i < arr.length; i += 1) {
+    if (arr[i] === item) {
+      arr2.push(arr[i]);
+    }
+  }
+  return arr2.length;
 }
 
 /**
@@ -464,7 +459,7 @@ function sortCitiesArray(arr) {
       return 1;
     } if (a.country < b.country) {
       return -1;
-    } return (a.city === b.city);
+    } return (a.city > b.city);
   });
   return arr;
 }
