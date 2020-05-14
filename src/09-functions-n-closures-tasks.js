@@ -153,7 +153,7 @@ function logger(/* func, logFunc */) {
  */
 function partialUsingArguments(fn, ...args1) {
   return function fan(...x) {
-    return fn(args1) + fn(x);
+    return fn(...[...args1, ...x]);
   };
 }
 
